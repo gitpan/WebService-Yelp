@@ -1,0 +1,6 @@
+Revision history for Perl extension WebService::Yelp.
+
+0.01  Thu Feb 14 19:13:28 2008
+	- original version; created by h2xs 1.23 with options
+		-AfX --skip-exporter --skip-autoloader -n WebService::Yelp
+
