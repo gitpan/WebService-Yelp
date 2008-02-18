@@ -3,7 +3,7 @@ package WebService::Yelp;
 use strict;
 use warnings;
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 use LWP::UserAgent;
 use JSON;
@@ -18,7 +18,8 @@ use WebService::Yelp::Category;
 use WebService::Yelp::Message;
 
 use base qw/Class::Accessor/;
-__PACKAGE__->mk_accessors(qw/ywsid base_url http_proxy http_timeout/);
+__PACKAGE__->mk_accessors(qw/ywsid base_url http_proxy 
+                             http_timeout http_agent/);
 
 use Data::Dumper;
 
@@ -112,7 +113,7 @@ sub new {
 
   # set up the user agent
   my $ua = LWP::UserAgent->new();
-  $ua->agent(__PACKAGE__ . '/' . $VERSION);
+  $ua->agent($self->http_agent() || __PACKAGE__ . '/' . $VERSION);
 
   $ua->proxy('http', $self->http_proxy()) if $self->http_proxy();
   $ua->timeout($self->http_timeout()) if $self->http_timeout();

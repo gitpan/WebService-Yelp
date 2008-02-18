@@ -37,7 +37,6 @@ A business has one or more categories associated with it. You can see
 
 =head1 METHODS (Read Only)
 
-
 =head2 name
 
 Category display name.

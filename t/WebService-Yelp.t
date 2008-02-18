@@ -3,11 +3,12 @@
 use strict;
 use warnings;
 use Test::More;
+use Data::Dumper;
 
 my $ywsid = $ENV{'YWSID'};
 
 if($ywsid) {
-  plan tests => 143;
+  plan tests => 145;
 }
 else {
   plan skip_all => "Please set your YWSID environment variable to run tests";
@@ -72,7 +73,6 @@ my $biz_phone = $yelp->call('search.phone', {
                                              phone => '4152550300',
                                             });
 
-
 for my $b (
            (@{$biz_bb_res->businesses},
             @{$biz_gpr_res->businesses},
@@ -80,6 +80,7 @@ for my $b (
             @{$biz_phone->businesses}),
           ) {
   
+
   isa_ok($b, 'WebService::Yelp::Business');
   can_ok($b, qw/distance neighborhoods state avg_rating city
          review_count latitude url id longitude 
@@ -112,11 +113,15 @@ my $hood_geo_res = $yelp->call('search.neighborhood.geocode', {
                                                                long => -122.399797,
                                                               });
 my $hood_location_res = $yelp->call('search.neighborhood.location', {
-                                                                     location => '1512 Shattuck Avenue, Berkeley, CA',
+                                                                     location => 'Shattuck Avenue, Berkeley, CA',
                                                                     });
 
-for my $n (@{$hood_geo_res->neighborhoods}) {
+for my $n (
+           (@{$hood_geo_res->neighborhoods},
+            @{$hood_location_res->neighborhoods})
+          ) {
   isa_ok($n, 'WebService::Yelp::Neighborhood');
-  can_ok($n, qw/name url/);
+  can_ok($n, qw/name url city state/);
+
 }
 

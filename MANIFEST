@@ -2,6 +2,7 @@ Changes
 Makefile.PL
 MANIFEST
 README
+TODO
 t/WebService-Yelp.t
 lib/WebService/Yelp.pm
 lib/WebService/Yelp/Business.pm
