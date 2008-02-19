@@ -3,7 +3,9 @@ Makefile.PL
 MANIFEST
 README
 TODO
-t/WebService-Yelp.t
+t/10-api.t
+t/80-pod.t
+t/80-pod-coverage.t
 lib/WebService/Yelp.pm
 lib/WebService/Yelp/Business.pm
 lib/WebService/Yelp/Category.pm
